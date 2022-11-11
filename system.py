@@ -8,15 +8,26 @@ from dataclasses import dataclass
 
 @dataclass
 class Person:
-    name: str = 'XXX'
+    name: str
+    position: str
+    say_position: str
+    
+def printPerson( e ):
+    print( '名前:' + str(e.name) + ',' + '役職:' + str(e.position) + ',' + '宣言役職:' + str(e.say_position))
 
     
 def main():  
-    # person_count = int(input("部屋の人数を入力\n"))
+    input_person = input("部屋の人数を入力\n")
+    person_count = int(input_person)
     
-    person1 = input("名前を入力：\n")
-    dataclass person1 = Person()
-    Person.name = input("名前を入力：\n")
+    e = list(range(person_count))
+    for i in range(0, (len(e))):
+        e[i] = Person('(unclear)', '(unclear)', '(unclear)',)
+        
+
+    e[0].name = 'Tom'
+    for i in range(0, (len(e))):
+        printPerson( e[i] )
 
 # Pythonとして実行された場合のみ、main関数を利用する
 if __name__ == '__main__':

@@ -384,7 +384,7 @@ void input_position(int person_count, int werewolf_count, person *persons, remai
 
     // 構造体「remain」の減算
     minus_remain(persons->position, persons->say_position, remains);
- }
+}
 
 
 int input_number_say_seer(int person_count, person *persons)

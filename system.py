@@ -20,8 +20,8 @@ def main():
     input_person = input("部屋の人数を入力\n")
     person_count = int(input_person)
     
-    person = list(person_count)
-    for i in range(len(person)):
+    person = list(range(person_count))
+    for i in person:
         person[i] = Person('(unclear)', '(unclear)', '(unclear)',)
         
 

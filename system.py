@@ -24,7 +24,16 @@ def printPerson( e ):
 
 @app.route('/')  
 def main():  
-    return 'Hello world!!!!!!'
+    return render_template('input.html', title = 'flask test')
+
+# フォームの値を受け取って結果を表示
+@app.route('/output', methods=["post"])
+def calc():
+    # 受け取った値を掛け算する
+    a = int(request.form.get("a"))
+    b = int(request.form.get("b"))
+    r = a * b
+    return render_template('output.html', answer = r)
     # person_count = (int(input("部屋の人数を入力\n")))
     
     # person = list(range(person_count))
@@ -37,4 +46,4 @@ def main():
 
 # Pythonとして実行された場合のみ、main関数を利用する
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True, port=5000)

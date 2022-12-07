@@ -13,8 +13,14 @@ class Person:
 def printPerson( e ):
     print( '名前:' + str(e.name) + ',' + '役職:' + str(e.position) + ',' + '宣言役職:' + str(e.say_position))
 
-def name():
-    i = 4
+
+def name( x ):
+    for i in range(len(x)):
+        if i == 0:
+            x[i].name = input("あなた(もしくは1番目の人)の名前は？\n")
+        else:
+            x[i].name = input( str(i) + "番目の人の名前は？\n")
+            
 
 
 def position():
@@ -34,18 +40,22 @@ def bitten():
 
 # 入力の操作
 def main():
-    input_person = input("部屋の人数を入力\n")
+    # 入力には制限(1以上?以下の整数)が必要。
+    input_person = input("部屋の人数は？\n")
     person_count = int(input_person)
     
     person = list(range(person_count))
     for i in person:
         person[i] = Person('(unclear)', '(unclear)', '(unclear)', False, False)
-    # name
+    
+    name(person)
     # position
     # say_position
     # executed
     # bitten
     
-    person[0].name = 'Tom'
+    # person[0].name = 'Tom'
+    
+    
     for i in range(len(person)):
         printPerson( person[i] )

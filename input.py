@@ -1,6 +1,9 @@
 # Pythonでもデータ構造が欲しいため、「dataclasses」を利用してみる
 from dataclasses import dataclass
 
+import my_function
+
+
 @dataclass
 class Person:
     name: str 
@@ -21,6 +24,7 @@ def name( x ):
         else:
             x[i].name = input( str(i) + "番目の人の名前は？\n")
             
+        # TODO:　無記入、名前の重複（できればスペースのみ）にエラーを出す
 
 
 def position():
@@ -40,9 +44,9 @@ def bitten():
 
 # 入力の操作
 def main():
-    # 入力には制限(1以上?以下の整数)が必要。
-    input_person = input("部屋の人数は？\n")
-    person_count = int(input_person)
+    person_count = -1
+    while (person_count < 3) or (person_count > my_function.PERSON_LIMIT):
+        person_count = int(input("部屋の人数は？\n"))
     
     person = list(range(person_count))
     for i in person:

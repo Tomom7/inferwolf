@@ -18,13 +18,34 @@ def printPerson( e ):
 
 
 def name( x ):
-    for i in range(len(x)):
-        if i == 0:
-            x[i].name = input("あなた(もしくは1番目の人)の名前は？\n")
+    same_count = 0
+    e = -1
+    for i in range(10000):
+        e += 1
+        if e == 0:
+            x[e].name = input('あなた(もしくは1番目の人)の名前は？\n')
         else:
-            x[i].name = input( str(i) + "番目の人の名前は？\n")
+            x[e].name = input( str(e + 1) + '番目の人の名前は？\n')
             
-        # TODO:　無記入、名前の重複（できればスペースのみ）にエラーを出す
+        # 空白文字のみか無記入の時に戻る
+        # 参考URL：https://pg-chain.com/python-null
+        if not x[e].name:
+            print('エラー：名前が無記入です！')
+            e -= 1
+            continue
+        
+        # 名前の一致を判断
+        for j in range(e):
+            if x[j].name == x[e].name:
+                print('エラー：' + x[j].name + 'の名前は既に存在します！')
+                same_count = 1
+                break
+        
+        if same_count == 1:
+            same_count = 0
+            e -= 1
+            print('Go')
+            continue
 
 
 def position():

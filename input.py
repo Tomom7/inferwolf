@@ -17,51 +17,47 @@ def printPerson( e ):
     print( '名前:' + str(e.name) + ',' + '役職:' + str(e.position) + ',' + '宣言役職:' + str(e.say_position))
 
 
-def name( x ):
-    same_count = 0
-    e = -1
-    for i in range(10000):
-        e += 1
-        if e == 0:
-            x[e].name = input('あなた(もしくは1番目の人)の名前は？\n')
+def name(x, person_count):
+    i = 0
+    while True:
+        if i == 0:
+            x[i].name = input('あなた(もしくは1番目の人)の名前は？\n')
         else:
-            x[e].name = input( str(e + 1) + '番目の人の名前は？\n')
+            x[i].name = input( str(i + 1) + '番目の人の名前は？\n')
             
         # 空白文字のみか無記入の時に戻る
         # 参考URL：https://pg-chain.com/python-null
-        if not x[e].name:
+        if not x[i].name:
             print('エラー：名前が無記入です！')
-            e -= 1
-            continue
+            i -= 1
         
-        # 名前の一致を判断
-        for j in range(e):
-            if x[j].name == x[e].name:
-                print('エラー：' + x[j].name + 'の名前は既に存在します！')
-                same_count = 1
-                break
+        else:    
+            # 名前の一致を判断
+            for j in range(i):
+                if x[j].name == x[i].name:
+                    print('エラー：' + x[i].name + 'の名前は既に存在します！')
+                    i -= 1
         
-        if same_count == 1:
-            same_count = 0
-            e -= 1
-            print('Go')
-            continue
+        # 終わりか判断
+        if i == person_count - 1:
+            break
+        i += 1
 
 
 def position():
-    i = 4
+    pass
 
 
 def say_position():
-    i = 4
+    pass
 
 
 def executed():
-    i = 4
+    pass
 
 
 def bitten():
-    i = 4
+    pass
 
 # 入力の操作
 def main():
@@ -70,10 +66,10 @@ def main():
         person_count = int(input("部屋の人数は？\n"))
     
     person = list(range(person_count))
-    for i in person:
-        person[i] = Person('(unclear)', '(unclear)', '(unclear)', False, False)
+    for k in person:
+        person[k] = Person('(unclear)', '(unclear)', '(unclear)', False, False)
     
-    name(person)
+    name(person, person_count)
     # position
     # say_position
     # executed
@@ -82,5 +78,5 @@ def main():
     # person[0].name = 'Tom'
     
     
-    for i in range(len(person)):
-        printPerson( person[i] )
+    for k in range(len(person)):
+        printPerson( person[k] )

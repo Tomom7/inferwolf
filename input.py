@@ -5,6 +5,7 @@ import my_function
 
 
 @dataclass
+# 各人物の情報の構造体
 class Person:
     name: str 
     position: str 
@@ -12,6 +13,21 @@ class Person:
     executed: bool 
     bitten: bool
 
+# 断定されていない役職や行動者の数情報の構造体
+class Remain:
+    all: int
+    villager: int
+    seer: int
+    werewolf: int
+    say_seer: int
+
+# "class Remain"　で仮定推理する際の退避構造体
+class Remain_tmp:
+    all: int
+    villager: int
+    seer: int
+    werewolf: int
+    say_seer: int
 
 def printPerson( e ):
     print( '名前:' + str(e.name) + ',' + '役職:' + str(e.position) + ',' + '宣言役職:' + str(e.say_position))
@@ -63,11 +79,15 @@ def bitten():
 def main():
     person_count = -1
     while (person_count < 3) or (person_count > my_function.PERSON_LIMIT):
-        person_count = int(input("部屋の人数は？\n"))
+            raw_person_count = input("部屋の人数は？\n")
+            # 数値以外は省く
+            if str.isdecimal(raw_person_count) == False:
+                continue
+            person_count = int(raw_person_count)
     
     person = list(range(person_count))
-    for k in person:
-        person[k] = Person('(unclear)', '(unclear)', '(unclear)', False, False)
+    for i in person:
+        person[i] = Person('(unclear)', '(unclear)', '(unclear)', False, False)
     
     name(person, person_count)
     # position
@@ -78,5 +98,5 @@ def main():
     # person[0].name = 'Tom'
     
     
-    for k in range(len(person)):
-        printPerson( person[k] )
+    for i in range(len(person)):
+        printPerson( person[i] )

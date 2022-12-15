@@ -1,0 +1,53 @@
+<html>
+<head>
+<meta charset="UTF-8">
+<link href="../static/css/style.css" rel="stylesheet">
+<title>test</title>
+</head>
+<body>
+    <div>
+        <button>入力欄を増やす</button>
+        <input type="number">
+        <p>+</p>
+        <input type="number">
+    </div>
+    <div>
+        <p id="total">合計：</p>
+    </div>
+</body>
+<script>
+let numberForms = document.querySelectorAll('input');
+
+function calc() {
+  let result = 0;
+  const total = document.getElementById('total');
+
+  numberForms.forEach(numberForm => {
+     result += Number(numberForm.value);
+  });
+
+  total.textContent = '合計：' + result;
+}
+
+numberForms.forEach(numberForm => {
+  numberForm.addEventListener('input', calc);
+});
+
+document.querySelector('button').addEventListener('click', () => {
+  const newForm = document.createElement('input');
+  newForm.type = 'number';
+
+  const plus = document.createElement('p');
+  plus.textContent = '+';
+
+  const div = document.querySelector('div');
+  div.appendChild(plus);
+  div.appendChild(newForm);
+
+  numberForms = document.querySelectorAll('input');
+  numberForms.forEach(numberForm => {
+    numberForm.addEventListener('input', calc);
+  });
+});
+</script>
+</html>
